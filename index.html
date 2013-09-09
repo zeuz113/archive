@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+
+<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.4.0.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.3.0.min.js"></script>
+
+
+<script src="js/preloadjs-NEXT.min.js"></script>
+
+	<script type="text/javascript" src="js/createjs/events/Event.js"></script>
+	<script type="text/javascript" src="js/createjs/events/EventDispatcher.js"></script>
+	<script type="text/javascript" src="js/createjs/utils/IndexOf.js"></script>
+	<script type="text/javascript" src="js/easeljs/utils/UID.js"></script>
+	<script type="text/javascript" src="js/easeljs/geom/Matrix2D.js"></script>
+	<script type="text/javascript" src="js/easeljs/geom/Rectangle.js"></script>
+	<script type="text/javascript" src="js/easeljs/display/DisplayObject.js"></script>
+	<script type="text/javascript" src="js/easeljs/display/Container.js"></script>
+	<script type="text/javascript" src="js/easeljs/display/Stage.js"></script>
+	<script type="text/javascript" src="js/easeljs/events/MouseEvent.js"></script>
+	<script type="text/javascript" src="js/easeljs/display/Shape.js"></script>
+	<script type="text/javascript" src="js/easeljs/display/Graphics.js"></script>
+	<script type="text/javascript" src="js/easeljs/utils/Ticker.js"></script>
+	<script type="text/javascript" src="js/easeljs/display/SpriteSheet.js"></script>
+	<script type="text/javascript" src="js/easeljs/display/Bitmap.js"></script>
+	<script type="text/javascript" src="js/easeljs/display/Sprite.js"></script>
+	<script type="text/javascript" src="js/easeljs/geom/Rectangle.js"></script>
+    
+    
+      <script src="js/jquery-1.9.1.min.js"></script>
+     <script type="text/javascript" src="js/jquery.touchSwipe.js"></script>
+      <script type="text/javascript" src="js/touch.js"></script>
+<script type="text/javascript" src="js/orientation.js"></script>
+    
+
+
+<script src="corre1.js"></script>
+<script src="corre2.js"></script>
+<script src="stand.js"></script>
+<script src="stage.js"></script>
+
+
+
+
+
+	
+
+<script>
+var canvas, stage, exportRoot, exportRoot2,exportRoot3;
+
+	var  w, h, loader, stage;
+	var sky, grant, ground, hill, hill2;
+	var derecha
+	var izquierda
+	var groundImg
+	var deltaS 
+	var position
+		
+	var grantW
+	var lado
+	var initTick;
+	var animando=false
+	var touchin=false
+	var datosAnterior;
+	
+	
+	
+	
+
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var manifest = [
+		{src:"images/ninoCae.png", id:"ninoCae"},
+		{src:"images/ninoCorre0000.png", id:"ninoCorre0000"},
+		{src:"images/ninoCorre0001.png", id:"ninoCorre0001"},
+		{src:"images/ninoCorre0002.png", id:"ninoCorre0002"},
+		{src:"images/ninoCorre0003.png", id:"ninoCorre0003"},
+		{src:"images/ninoCorre0004.png", id:"ninoCorre0004"},
+		{src:"images/ninoCorre0005.png", id:"ninoCorre0005"},
+		{src:"images/ninoCorre0006.png", id:"ninoCorre0006"},
+		{src:"images/ninoCorre0007.png", id:"ninoCorre0007"},
+		{src:"images/ninoCorre0008.png", id:"ninoCorre0008"},
+		{src:"images/ninoCorre0009.png", id:"ninoCorre0009"},
+		{src:"images/ninoCorre0010.png", id:"ninoCorre0010"},
+		{src:"images/ninoCorre0011.png", id:"ninoCorre0011"},
+		{src:"images/ninoCorre0012.png", id:"ninoCorre0012"},
+		{src:"images/ninoCorre0013.png", id:"ninoCorre0013"},
+		{src:"images/ninoCorre0014.png", id:"ninoCorre0014"},
+		{src:"images/ninoCorre0015.png", id:"ninoCorre0015"},
+		{src:"images/ninoCorre0016.png", id:"ninoCorre0016"},
+		{src:"images/ninoCorre0017.png", id:"ninoCorre0017"},
+		{src:"images/ninoCorre0018.png", id:"ninoCorre0018"},
+		{src:"images/ninoQuieto0000.png", id:"ninoQuieto0000"},
+		{src:"images/ninoQuieto0001.png", id:"ninoQuieto0001"},
+		{src:"images/ninoQuieto0002.png", id:"ninoQuieto0002"},
+		{src:"images/ninoQuieto0003.png", id:"ninoQuieto0003"},
+		{src:"images/ninoQuieto0004.png", id:"ninoQuieto0004"},
+		{src:"images/ninoQuieto0005.png", id:"ninoQuieto0005"},
+		{src:"images/ninoQuieto0006.png", id:"ninoQuieto0006"},
+		{src:"images/ninoQuieto0007.png", id:"ninoQuieto0007"},
+		{src:"images/ninoQuieto0008.png", id:"ninoQuieto0008"},
+		{src:"images/ninoQuieto0009.png", id:"ninoQuieto0009"},
+		{src:"images/ninoQuieto0010.png", id:"ninoQuieto0010"},
+		{src:"images/ninoQuieto0011.png", id:"ninoQuieto0011"},
+		{src:"images/ninoQuieto0012.png", id:"ninoQuieto0012"},
+		{src:"images/ninoQuieto0013.png", id:"ninoQuieto0013"},
+		{src:"images/ninoQuieto0014.png", id:"ninoQuieto0014"},
+		{src:"images/ninoQuieto0015.png", id:"ninoQuieto0015"},
+		{src:"images/ninoQuieto0016.png", id:"ninoQuieto0016"},
+		{src:"images/ninoQuieto0017.png", id:"ninoQuieto0017"},
+		{src:"images/ninoQuieto0018.png", id:"ninoQuieto0018"},
+		{src:"images/ninoQuieto0019.png", id:"ninoQuieto0019"},
+		{src:"images/ninoQuieto0020.png", id:"ninoQuieto0020"},
+		{src:"images/ninoSalto.png", id:"ninoSalto"},
+		{src:"images/runningGrant.png", id:"grant"},
+			{src:"images/sky.png", id:"sky"},
+			{src:"images/ground.png", id:"ground"},
+			{src:"images/parallaxHill1.png", id:"hill"},
+			{src:"images/parallaxHill2.png", id:"hill2"}
+	];
+
+	loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(manifest);
+	
+	/////////////////////////////
+	
+	
+	
+
+		
+		
+	
+		
+	
+	
+}
+
+
+
+
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	
+	
+	
+	
+
+	stage = new createjs.Stage(canvas);
+	//stage.addChild(exportRoot);
+	
+	w = stage.canvas.width;
+	h = stage.canvas.height;
+	
+	
+	stage.update();
+	
+	
+setStage()
+	createjs.Ticker.setFPS(10);
+	createjs.Ticker.addEventListener("tick", stage);
+	
+	setStage(initTick())
+	descansa()
+	
+}
+
+
+function avanza(){
+	
+	if(animando==false){
+	
+	stage.removeChild(exportRoot);
+	exportRoot = new lib.corre1();
+	exportRoot.y=30
+	exportRoot.x=(w/4)
+	stage.addChild(exportRoot);
+	stage.removeChild(exportRoot2);
+	stage.removeChild(exportRoot3);
+	
+	stage.update();
+	animando=true
+	}
+	}
+	
+function descansa(){
+	
+	stage.removeChild(exportRoot2);
+	exportRoot2 = new lib2.stand();
+	exportRoot2.y=15
+	exportRoot2.x=(w/4)
+	
+	stage.addChild(exportRoot2);
+	stage.removeChild(exportRoot);
+	stage.removeChild(exportRoot3);
+	
+	stage.update();
+	animando=false
+	
+	}	
+
+
+function retrocede(){
+	
+	if(animando==false){
+	
+	stage.removeChild(exportRoot3);
+	exportRoot3 = new lib3.corre2();
+	exportRoot3.y=30
+	exportRoot3.x=(w/4)
+	
+	stage.addChild(exportRoot3);
+	stage.removeChild(exportRoot2);
+	stage.removeChild(exportRoot);
+	//exportRoot2.rotation=20
+	stage.update();
+	animando=true
+	
+	}
+	
+	}	
+
+
+
+// Listen for orientation changes
+
+	
+</script>
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4">
+	<canvas id="canvas" width="1000" height="400" style="background-color:#ffffff"></canvas>
+    <div id="giro"></div>
+     <div id="giro1"></div>
+     <div id="giro2"></div>
+    
+    
+       <span class='title'></span>
+			<h4>event: <code>swipeStatus</code></h4>
+			<p>You can also get the current status of the swipe, which can be used in place of all other methods. The status reports <code>phase</code>, <code>direction</code>, <code>distance</code>, <code>duration</code> and <code>fingerCount</code>.
+			Below has a 200px threshold and a 5 second time limit
+			</p>
+			
+			
+			<pre class="prettyprint lang-js" data-src="code_1"></pre>
+			<span class='navigation'></span>
+			
+			<div id="test" class="box">Swipe me</div>
+			
+			<span class='navigation'></span>
+</body>
+</html>
